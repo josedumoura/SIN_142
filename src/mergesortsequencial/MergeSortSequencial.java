@@ -12,7 +12,7 @@ public class MergeSortSequencial {
         // Find sizes of two subarrays to be merged 
         int n1 = m - l + 1; 
         int n2 = r - m; 
-  
+        //testecommit1
         /* Create temp arrays */
         int L[] = new int [n1]; 
         int R[] = new int [n2]; 
