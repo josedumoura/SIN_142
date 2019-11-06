@@ -15,14 +15,15 @@ package CPU_Bound;
 
 public class Sorter implements Runnable {
 	private int[] a;
-	private int threadCount;
+        private int l, r;
 	
-	public Sorter(int[] a, int threadCount) {
+	public Sorter(int[] a, int l, int r) {
 		this.a = a;
-		this.threadCount = threadCount;
+		this.l = l;
+                this.r = r;
 	}
 	
 	public void run() {
-		MergeSortConcorrente.parallelMergeSort(a, threadCount);
+            MergeSortConcorrente.mergeSort (a, l, r);
 	}
 }

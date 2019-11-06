@@ -1,142 +1,98 @@
 package CPU_Bound;
 
-import java.util.*;   // for Random
 
 public class MergeSortConcorrente {
-	private static final Random RAND = new Random(42);   // random number generator
-
-	public static void main(String[] args) throws Throwable {
-		int LENGTH = 1000;   // initial length of array to sort
-		int RUNS   =  16;   // how many times to grow by 2?
-
-		for (int i = 1; i <= RUNS; i++) {
-			int[] a = createRandomArray(LENGTH);
-
-			// run the algorithm and time how long it takes
-			long startTime1 = System.currentTimeMillis();
-			parallelMergeSort(a);
-			long endTime1 = System.currentTimeMillis();
-			
-			if (!isSorted(a)) {
-				throw new RuntimeException("not sorted afterward: " + Arrays.toString(a));
-			}
-
-			System.out.printf("%10d elements  =>  %6d ms \n", LENGTH, endTime1 - startTime1);
-			LENGTH *= 2;   // double size of array for next time
-		}
-	}
-	
-	public static void parallelMergeSort(int[] a) {
-		// int cores = Runtime.getRuntime().availableProcessors();
-		int cores = 8;
-		parallelMergeSort(a, cores);
-	}
-	
-	public static void parallelMergeSort(int[] a, int threadCount) {
-		if (threadCount <= 1) {
-			mergeSort(a);
-		} else if (a.length >= 2) {
-			// split array in half
-			int[] left  = Arrays.copyOfRange(a, 0, a.length / 2);
-			int[] right = Arrays.copyOfRange(a, a.length / 2, a.length);
-			
-			// sort the halves
-			// mergeSort(left);
-			// mergeSort(right);
-			Thread lThread = new Thread(new Sorter(left,  threadCount / 2));
-			Thread rThread = new Thread(new Sorter(right, threadCount / 2));
-			lThread.start();
-			rThread.start();
-			
-			try {
-				lThread.join();
-				rThread.join();
-			} catch (InterruptedException ie) {}
-			
-			// merge them back together
-			merge(left, right, a);
-		}
-	}
-	
-	// Arranges the elements of the given array into sorted order
-	// using the "merge sort" algorithm, which splits the array in half,
-	// recursively sorts the halves, then merges the sorted halves.
-	// It is O(N log N) for all inputs.
-	public static void mergeSort(int[] a) {
-		if (a.length >= 2) {
-			// split array in half
-			int[] left  = Arrays.copyOfRange(a, 0, a.length / 2);
-			int[] right = Arrays.copyOfRange(a, a.length / 2, a.length);
-			
-			// sort the halves
-			mergeSort(left);
-			mergeSort(right);
-			
-			// merge them back together
-			merge(left, right, a);
-		}
-	}
-	
-	// Combines the contents of sorted left/right arrays into output array a.
-	// Assumes that left.length + right.length == a.length.
-	public static void merge(int[] left, int[] right, int[] a) {
-		int i1 = 0;
-		int i2 = 0;
-		for (int i = 0; i < a.length; i++) {
-			if (i2 >= right.length || (i1 < left.length && left[i1] < right[i2])) {
-				a[i] = left[i1];
-				i1++;
-			} else {
-				a[i] = right[i2];
-				i2++;
-			}
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	// Swaps the values at the two given indexes in the given array.
-	public static final void swap(int[] a, int i, int j) {
-		if (i != j) {
-			int temp = a[i];
-			a[i] = a[j];
-			a[j] = temp;
-		}
-	}
-	
-	// Randomly rearranges the elements of the given array.
-	public static void shuffle(int[] a) {
-		for (int i = 0; i < a.length; i++) {
-			// move element i to a random index in [i .. length-1]
-			int randomIndex = (int) (Math.random() * a.length - i);
-			swap(a, i, i + randomIndex);
-		}
-	}
-	
-	// Returns true if the given array is in sorted ascending order.
-	public static boolean isSorted(int[] a) {
-		for (int i = 0; i < a.length - 1; i++) {
-			if (a[i] > a[i + 1]) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	
-
-	// Creates an array of the given length, fills it with random
-	// non-negative integers, and returns it.
-	public static int[] createRandomArray(int length) {
-		int[] a = new int[length];
-		for (int i = 0; i < a.length; i++) {
-			a[i] = RAND.nextInt(1000000);
-			// a[i] = RAND.nextInt(40);
-		}
-		return a;
-	}
+    
+    // Main function that sorts arr[l..r] using 
+    // merge() 
+    public static void mergeSort(int arr[], int l, int r) 
+    { 
+        if (l < r) 
+        { 
+            // Find the middle point 
+            int m = (l+r)/2; 
+  
+            // Sort first and second halves 
+            mergeSort(arr, l, m); 
+            mergeSort(arr , m+1, r); 
+  
+            // Merge the sorted halves 
+            merge(arr, l, m, r); 
+        } 
+    } 
+    
+    // Merges two subarrays of arr[]. 
+    // First subarray is arr[l..m] 
+    // Second subarray is arr[m+1..r] 
+    public static void merge(int arr[], int l, int m, int r) 
+    { 
+        // Find sizes of two subarrays to be merged 
+        int n1 = m - l + 1; 
+        int n2 = r - m; 
+  
+        /* Create temp arrays */
+        int L[] = new int [n1]; 
+        int R[] = new int [n2]; 
+  
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i) 
+            L[i] = arr[l + i]; 
+        for (int j=0; j<n2; ++j) 
+            R[j] = arr[m + 1+ j]; 
+  
+  
+        /* Merge the temp arrays */
+  
+        // Initial indexes of first and second subarrays 
+        int i = 0, j = 0; 
+  
+        // Initial index of merged subarry array 
+        int k = l; 
+        while (i < n1 && j < n2) 
+        { 
+            if (L[i] <= R[j]) 
+            { 
+                arr[k] = L[i]; 
+                i++; 
+            } 
+            else
+            { 
+                arr[k] = R[j]; 
+                j++; 
+            } 
+            k++; 
+        } 
+  
+        /* Copy remaining elements of L[] if any */
+        while (i < n1) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+            k++; 
+        } 
+  
+        /* Copy remaining elements of R[] if any */
+        while (j < n2) 
+        { 
+            arr[k] = R[j]; 
+            j++; 
+            k++; 
+        } 
+    } 
+    
+    // Combines the contents of sorted left/right arrays into output array a.
+    // Assumes that left.length + right.length == a.length.
+    public static void merge(int[] left, int[] right, int[] a) {
+            int i1 = 0;
+            int i2 = 0;
+            for (int i = 0; i < a.length; i++) {
+                    if (i2 >= right.length || (i1 < left.length && left[i1] < right[i2])) {
+                            a[i] = left[i1];
+                            i1++;
+                    } else {
+                            a[i] = right[i2];
+                            i2++;
+                    }
+            }
+    }
 }
