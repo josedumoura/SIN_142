@@ -4,7 +4,7 @@ package IOBound;
 import java.io.*;
 
 public class IOBoundConcorrente2Threads extends Thread{
-    
+    //alterar os FILEs para copiar os diretórios
     File src1 = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Concorrente\\source1"); //Digitar o primeiro diretório que deseja copiar
     File src2 = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Concorrente\\source2"); //Digitar o segundo diretório que deseja copiar
     File dst = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Concorrente\\destino"); //Digitar o destino da cópia do diretório
