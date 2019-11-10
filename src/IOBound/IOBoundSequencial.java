@@ -10,9 +10,11 @@ public class IOBoundSequencial {
         IOBoundSequencial cd = new IOBoundSequencial();
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
-        File src1 = new File("C:\\Users\\henri\\Desktop\\Sequencial\\source1"); //Digitar o primeiro diretório que deseja copiar
-        File src2 = new File("C:\\Users\\henri\\Desktop\\Sequencial\\source2"); //Digitar o segundo diretório que deseja copiar
-        File dst = new File("C:\\Users\\henri\\Desktop\\Sequencial\\destino"); //Digitar o destino da cópia do diretório
+        //alterar os FILEs para copiar os diretórios antes de executar
+        
+        File src1 = new File("ALTERE AQUI"); //Digitar o primeiro diretório que deseja copiar
+        File src2 = new File("ALTERE AQUI"); //Digitar o segundo diretório que deseja copiar
+        File dst = new File("ALTERE AQUI"); //Digitar o destino da cópia do diretório
         
         long startTime1 = System.currentTimeMillis();
         
