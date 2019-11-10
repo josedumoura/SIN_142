@@ -51,7 +51,7 @@ public class TesteConcorrente2Threads {
         int[] a = new int[tam];
         
         for (int i = 0; i < tam; i++) {
-                a[i] = random.nextInt(1000000);
+                a[i] = random.nextInt(100000000);
                 
         }
         
