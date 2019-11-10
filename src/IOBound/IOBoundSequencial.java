@@ -10,12 +10,19 @@ public class IOBoundSequencial {
         IOBoundSequencial cd = new IOBoundSequencial();
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
-        File src1 = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Sequencial\\source1"); //Digitar o primeiro diretório que deseja copiar
-        File src2 = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Sequencial\\source2"); //Digitar o segundo diretório que deseja copiar
-        File dst = new File("C:\\Users\\henri\\OneDrive\\Área de Trabalho\\Curso\\Ano 2\\Programação Concorrente e Distribuída\\IO Bound\\Sequencial\\destino"); //Digitar o destino da cópia do diretório
-
+        File src1 = new File("C:\\Users\\henri\\Desktop\\Sequencial\\source1"); //Digitar o primeiro diretório que deseja copiar
+        File src2 = new File("C:\\Users\\henri\\Desktop\\Sequencial\\source2"); //Digitar o segundo diretório que deseja copiar
+        File dst = new File("C:\\Users\\henri\\Desktop\\Sequencial\\destino"); //Digitar o destino da cópia do diretório
+        
+        long startTime1 = System.currentTimeMillis();
+        
         cd.copyDirectory(src1, dst);
         cd.copyDirectory(src2, dst);
+        
+        long endTime1 = System.currentTimeMillis();
+        
+        System.out.printf("\nArquivos copiados em %6d ms \n", endTime1 - startTime1);
+        
     }
 
     public void copyDirectory(File srcPath, File dstPath) throws IOException {
@@ -56,7 +63,7 @@ public class IOBoundSequencial {
             }
         }
         
-        System.out.println("Diretorio copiado com sucesso.");
+        System.out.println("Bytes copiados com sucesso.");
         
     }
 }
