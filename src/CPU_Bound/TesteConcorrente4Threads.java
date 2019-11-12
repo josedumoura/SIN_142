@@ -57,7 +57,7 @@ public class TesteConcorrente4Threads {
         //imprimirArray(a);
         
         //System.out.printf("Merge Sort Concorrente 4 Threads: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
-        
+        //impressão no console comentada
     }
     
     public static int[] criarArrayAleatorio(int tam) {
