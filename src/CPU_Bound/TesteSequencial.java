@@ -26,7 +26,7 @@ public class TesteSequencial {
         //imprimirArray(a);
         
         //System.out.printf("Merge Sort Sequencial: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
-        
+        //impressão no console comentada
     }
     
     public static int[] criarArrayAleatorio(int tam) {
