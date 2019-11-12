@@ -6,7 +6,6 @@ import java.util.Random;
 public class TesteSequencial {
     
     private static final Random random = new Random(42);
-    
    
     public static void main (String[] args) {
         
@@ -18,15 +17,15 @@ public class TesteSequencial {
         
         MergeSortSequencial mergeSequencial = new MergeSortSequencial();
         
-        long startTime1 = System.currentTimeMillis();
+        //long startTime1 = System.currentTimeMillis();
 			
 	mergeSequencial.mergeSort(a, 0, a.length - 1);
         
-        long endTime1 = System.currentTimeMillis();
+        //long endTime1 = System.currentTimeMillis();
         
         //imprimirArray(a);
         
-        System.out.printf("Merge Sort Sequencial: %d elements  =>  %6d ms \n\n", TAM, endTime1 - startTime1);
+        //System.out.printf("Merge Sort Sequencial: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
         
     }
     
@@ -41,7 +40,7 @@ public class TesteSequencial {
         
         return a;
     }
-    
+
     public static void imprimirArray (int temp[]) {
         int i;
         for (i = 0; i < temp.length; i++) {
