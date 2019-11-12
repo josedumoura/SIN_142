@@ -22,7 +22,7 @@ public class TesteConcorrente2Threads {
         int[] left  = Arrays.copyOfRange(a, 0, a.length / 2);
         int[] right = Arrays.copyOfRange(a, a.length / 2, a.length);
 
-        long startTime1 = System.currentTimeMillis();
+        //long startTime1 = System.currentTimeMillis();
         
         Thread lThread = new Thread(new Sorter(left, 0, left.length - 1));
         Thread rThread = new Thread(new Sorter(right, 0 , right.length - 1));
@@ -37,12 +37,11 @@ public class TesteConcorrente2Threads {
         // merge them back together
         mergeConcorrente.merge(left, right, a);
         
-        long endTime1 = System.currentTimeMillis();
+        //long endTime1 = System.currentTimeMillis();
         
         //imprimirArray(a);
         
-        System.out.printf("Merge Sort Concorrente 2 Threads: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
-        
+        //System.out.printf("Merge Sort Concorrente 2 Threads: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
         
     }
     
