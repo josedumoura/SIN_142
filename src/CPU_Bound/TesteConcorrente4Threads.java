@@ -26,7 +26,7 @@ public class TesteConcorrente4Threads {
         int[] part3 = Arrays.copyOfRange(a, TAM/2, (metade+TAM)/2);
         int[] part4 = Arrays.copyOfRange(a, (metade+TAM)/2, TAM);
         
-        long startTime1 = System.currentTimeMillis();
+        //long startTime1 = System.currentTimeMillis();
         
         Thread t1 = new Thread(new Sorter(part1, 0, part1.length - 1));
         Thread t2 = new Thread(new Sorter(part2, 0, part2.length - 1));
@@ -52,13 +52,11 @@ public class TesteConcorrente4Threads {
         mergeConcorrente.merge(part3, part4, temp2);
         mergeConcorrente.merge(temp1, temp2, a);
         
-        long endTime1 = System.currentTimeMillis();
+        //long endTime1 = System.currentTimeMillis();
         
         //imprimirArray(a);
         
-        System.out.printf("Merge Sort Concorrente 4 Threads: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
-        
-    
+        //System.out.printf("Merge Sort Concorrente 4 Threads: %d elements  =>  %6d ms \n", TAM, endTime1 - startTime1);
         
     }
     
