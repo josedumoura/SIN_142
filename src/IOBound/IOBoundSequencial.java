@@ -4,7 +4,17 @@ package IOBound;
 import java.io.*;
 
 public class IOBoundSequencial {
-
+    
+    public static File src1 = new File("ALTERE AQUI"); //Digitar o primeiro diretório que deseja copiar
+    public static File src2 = new File("ALTERE AQUI"); //Digitar o segundo diretório que deseja copiar
+    public static File dst = new File("ALTERE AQUI"); //Digitar o destino da cópia do diretório
+        
+    public void preencheFiles(String sorc1, String sorc2, String dest){
+        src1 = new File(sorc1);
+        src2 = new File(sorc2);
+        dst = new File(dest);
+    }
+    
     public static void main(String[] args) throws IOException {
 
         IOBoundSequencial cd = new IOBoundSequencial();
@@ -12,9 +22,7 @@ public class IOBoundSequencial {
         
         //alterar os FILEs para copiar os diretórios antes de executar
         
-        File src1 = new File("ALTERE AQUI"); //Digitar o primeiro diretório que deseja copiar
-        File src2 = new File("ALTERE AQUI"); //Digitar o segundo diretório que deseja copiar
-        File dst = new File("ALTERE AQUI"); //Digitar o destino da cópia do diretório
+        
         
         long startTime1 = System.currentTimeMillis();
         
