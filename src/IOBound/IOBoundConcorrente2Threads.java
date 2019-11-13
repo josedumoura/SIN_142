@@ -7,10 +7,16 @@ public class IOBoundConcorrente2Threads extends Thread{
     
     //alterar os FILEs para copiar os diretórios antes de executar
     
-    File src1 = new File("ALTERE AQUI"); //Digitar o primeiro diretório que deseja copiar
-    File src2 = new File("ALTERE AQUI"); //Digitar o segundo diretório que deseja copiar
-    File dst = new File("ALTERE AQUI"); //Digitar o destino da cópia do diretório
+    public static File src1 = new File("ALTERE AQUI"); //Digitar o primeiro diretório que deseja copiar
+    public static File src2 = new File("ALTERE AQUI"); //Digitar o segundo diretório que deseja copiar
+    public static File dst = new File("ALTERE AQUI"); //Digitar o destino da cópia do diretório
         
+    public void preencheFiles(String sorc1, String sorc2, String dest){
+        src1 = new File(sorc1);
+        src2 = new File(sorc2);
+        dst = new File(dest);
+    }
+    
     private String nome;
     
     public IOBoundConcorrente2Threads(String nome){
@@ -90,7 +96,7 @@ public class IOBoundConcorrente2Threads extends Thread{
 
         } else {
             
-            if (!srcPath.exists()) { //se o diretorio fonte nao existir, imprime um erro
+            if (!srcPath.exists()) { //se o diretorio fonte nao existir, imprime um erro e fecha o programa
                 System.out.println("Diretório inexistente.");
                 System.exit(0);
                 
